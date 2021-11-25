@@ -1,4 +1,5 @@
 import {createContext} from "react";
+import { apiRegister, apiLogin } from "./Api";
 
 const AuthContext = createContext();
 
@@ -6,7 +7,7 @@ const AuthProvider = ({children})=>{
 
     const handleRegister = (objUser)=>{
         //Realizar petición al servidor
-        fetch('http://localhost:3000/user', {
+        fetch(apiRegister, {
             method: 'POST',
             headers:{
                 'Content-Type': 'application/json'
@@ -15,14 +16,26 @@ const AuthProvider = ({children})=>{
         }).then(async (resp)=>{
             if(resp.status === 201){
                 let json = await resp.json();
-                console.table(json);
+                //Almacenar token en espacio de memoria del navegador
+                localStorage.setItem('token', json.token);
             }
         }).catch(error=>{
             console.log(error);
         });
     }
 
-    const data={handleRegister};
+    const handleLogin = async (objUser)=>{
+        let resp = await fetch(apiLogin, {
+            method: 'POST',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(objUser)
+        });
+        return resp;
+    }
+
+    const data={handleRegister, handleLogin};
 
     return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>
 }

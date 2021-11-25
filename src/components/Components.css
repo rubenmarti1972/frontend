@@ -1,0 +1,13 @@
+.login{
+    margin: 60px;
+    border: 1px solid #126EFD;
+    padding: 15px;
+    border-radius: 20% 0% 20% 0%;
+}
+
+.register{
+    margin: 50px;
+    border: 1px solid #126EFD;
+    border-radius: 0% 20% 0% 20%;
+    padding: 15px;
+}

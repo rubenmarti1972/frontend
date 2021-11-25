@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import AuthContext from "../context/AuthContext";
+import "./Components.css";
 
 const objForm = {
     name: "",
@@ -30,7 +31,7 @@ const Register = () => {
     }
 
   return (
-    <div>
+    <div className="register">
       <h2>Register</h2>
       <Form onSubmit={handleSubmit}>
         {/******Fila 1********/}

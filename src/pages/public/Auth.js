@@ -1,10 +1,14 @@
 import React from 'react'
 import Register from '../../components/Register';
+import Login from '../../components/Login';
 
 const Auth = () => {
     return (
         <div>
-            <h2>Auth</h2>
+            <Login/>
+            <br/>
+            <hr/>
+            <br/>
             <Register/>
         </div>
     )
