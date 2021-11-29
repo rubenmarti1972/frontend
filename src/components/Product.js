@@ -1,20 +1,25 @@
-import React, {useContext} from 'react'
-import ProductContext from '../context/ProductContext';
-import ProductCard from './ProductCard';
-import ProductForm from './ProductForm';
+import React, { useContext } from "react";
+import ProductContext from "../context/ProductContext";
+import ProductCard from "./ProductCard";
+import ProductForm from "./ProductForm";
+import "./Components.css";
 
 const Product = () => {
+  const { products } = useContext(ProductContext);
 
-    const {products} = useContext(ProductContext);
-
-    return (
-        <div>
-            <ProductForm/>
-            <br/>
-            {products.map(e=><ProductCard key={e._id} id={e._id} name={e.name} price={e.price}/>)}
-            
-        </div>
-    )
-}
+  return (
+    <div>
+      <ProductForm />
+      <br />
+      <div className="contCards">
+        {products.map((e) => {
+          return (
+            <ProductCard className="card" key={e._id} id={e._id} name={e.name} price={e.price} />
+          );
+        })}
+      </div>
+    </div>
+  );
+};
 
 export default Product;

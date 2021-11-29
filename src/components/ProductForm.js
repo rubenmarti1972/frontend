@@ -37,13 +37,13 @@ const ProductForm = () => {
           <Col>
             <Form.Group className="mb-3" controlId="productName">
               <Form.Label>Product name</Form.Label>
-              <Form.Control value={form.name} onChange={handleForm} name="name" type="text" placeholder="Enter product name" />
+              <Form.Control required value={form.name} onChange={handleForm} name="name" type="text" placeholder="Enter product name" />
             </Form.Group>
           </Col>
           <Col>
             <Form.Group className="mb-3" controlId="productPrice">
               <Form.Label>Product price</Form.Label>
-              <Form.Control value={form.price} onChange={handleForm} name="price" type="number" placeholder="Enter product price" />
+              <Form.Control required value={form.price} onChange={handleForm} name="price" type="number" placeholder="Enter product price" />
             </Form.Group>
           </Col>
         </Row>
