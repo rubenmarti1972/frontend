@@ -14,7 +14,7 @@ const ProductFormModal = ({ show, handleClose }) => {
       <Modal.Header closeButton>
         <Modal.Title>Update product</Modal.Title>
       </Modal.Header>
-      <Modal.Body>
+      <Modal.Body> 
         {/*****Formulario de actualización */}
           <Row>
             <Col>
