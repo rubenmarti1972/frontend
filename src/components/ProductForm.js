@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Form, Button, Row, Col } from "react-bootstrap";
+import { Form, Button, Row, Col, Alert } from "react-bootstrap";
 import ProductContext from "../context/ProductContext";
 
 const objForm = {
@@ -11,19 +11,27 @@ const ProductForm = () => {
     const {handleCreate} = useContext(ProductContext);
     //Estado
     const [form, setForm] = useState(objForm);
+    const [show, setShow] = useState(false);
 
     const handleForm = (e)=>{
         setForm({...form, [e.target.name]: e.target.value});
     }
 
-    const handleSubmit = (e)=>{
+    const handleSubmit = async(e)=>{
         e.preventDefault();
-        handleCreate(form);
+        let resp = await handleCreate(form);
+        if(resp.status === 201){
+          setShow(true);
+          setTimeout(()=>setShow(false), 3000);
+        }
     }
 
   return (
     <div>
       <h4>Create</h4>
+      <Alert variant="success" show={show}>
+        Created product
+      </Alert>
       <Form onSubmit={handleSubmit}>
         <Row>
           <Col>
