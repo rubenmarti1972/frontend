@@ -3,7 +3,7 @@ import { Form, Button, Row, Col } from "react-bootstrap";
 
 const objForm = {
     name: "",
-    price: ""
+    price: 0
 }
 const ProductForm = () => {
 
