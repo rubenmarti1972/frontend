@@ -9,6 +9,10 @@ const ProductFormModal = ({ show, handleClose }) => {
         setForm({...form, [e.target.name]: e.target.value});
     }
 
+    const handleUpdate = ()=>{
+
+    }
+
   return (
     <Modal show={show} onHide={handleClose} backdrop="static">
       <Modal.Header closeButton>
@@ -49,7 +53,7 @@ const ProductFormModal = ({ show, handleClose }) => {
         <Button variant="secondary" onClick={handleClose}>
           Close
         </Button>
-        <Button variant="primary">
+        <Button variant="primary" onClick={handleUpdate}>
           Update
         </Button>
       </Modal.Footer>
