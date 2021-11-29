@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
+import ProductContext from "../context/ProductContext";
 
 const objForm = {
     name: "",
-    price: 0
+    price: ""
 }
 const ProductForm = () => {
-
+  //Contexto
+    const {handleCreate} = useContext(ProductContext);
+    //Estado
     const [form, setForm] = useState(objForm);
 
     const handleForm = (e)=>{
@@ -15,27 +18,27 @@ const ProductForm = () => {
 
     const handleSubmit = (e)=>{
         e.preventDefault();
+        handleCreate(form);
     }
 
   return (
     <div>
       <h4>Create</h4>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Row>
           <Col>
             <Form.Group className="mb-3" controlId="productName">
               <Form.Label>Product name</Form.Label>
-              <Form.Control type="text" placeholder="Enter product name" />
+              <Form.Control value={form.name} onChange={handleForm} name="name" type="text" placeholder="Enter product name" />
             </Form.Group>
           </Col>
           <Col>
             <Form.Group className="mb-3" controlId="productPrice">
               <Form.Label>Product price</Form.Label>
-              <Form.Control type="number" placeholder="Enter product price" />
+              <Form.Control value={form.price} onChange={handleForm} name="price" type="number" placeholder="Enter product price" />
             </Form.Group>
           </Col>
         </Row>
-
         <Button variant="primary" type="submit">Create</Button>
       </Form>
     </div>
