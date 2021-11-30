@@ -3,7 +3,7 @@ import { Card, Button } from "react-bootstrap";
 import ProductContext from "../context/ProductContext";
 import ProductFormModal from "./ProductFormModal";
 
-const ProductCard = ({ id, name, price }) => {
+const ProductCard = ({ id, name, price, edit }) => {
 
   const {deleteProduct} = useContext(ProductContext);
 
@@ -30,9 +30,16 @@ const ProductCard = ({ id, name, price }) => {
         <Card.Body>
           <Card.Title>{name}</Card.Title>
           <Card.Text>{price}</Card.Text>
-          <Button variant="warning" onClick={handleEdit}>Edit</Button>
-          &nbsp;
-          <Button variant="danger" onClick={handleDelete}>Delete</Button>
+          {edit &&
+          (
+            <>
+            <Button variant="warning" onClick={handleEdit}>Edit</Button>
+              &nbsp;
+            <Button variant="danger" onClick={handleDelete}>Delete</Button>
+          </>
+          )
+        }
+          
         </Card.Body>
       </Card>
       {/******Mostrar modal******/}
