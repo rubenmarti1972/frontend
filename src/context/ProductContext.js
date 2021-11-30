@@ -10,8 +10,8 @@ const ProductProvider = ({children})=>{
     const[catalogue, setCatalogue] = useState([]);
 
     useEffect(()=>{
-        getProducts();
-        getAllProducts();
+        getProducts().finally();
+        getAllProducts().finally();
     }, []);
 
     const handleCreate = async (objProduct)=>{

@@ -23,12 +23,7 @@ const Login = () => {
   const handleSubmit = async (e)=>{
     e.preventDefault();
     let resp = await handleLogin(form);
-    if(resp.status === 200){
-      //Obtener datos de la respuesta del servidor
-      let json = await resp.json();
-      //Almacenar token en el localStorage
-      localStorage.setItem('token', json.token);
-      alert("AUTENTICADO!!!!");
+    if(resp.status === 200){      
       setForm(objForm);
     }else{
      setShow(true);
