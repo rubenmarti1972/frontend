@@ -27,7 +27,7 @@ const ProductCard = ({ id, name, price, handleDelete }) => {
         </Card.Body>
       </Card>
       {/******Mostrar modal******/}
-      <ProductFormModal show={show} handleClose={handleClose}/>
+      <ProductFormModal id={id} name={name} price={price} show={show} handleClose={handleClose}/>
     </>
   );
 };

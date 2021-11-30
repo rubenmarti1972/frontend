@@ -47,7 +47,25 @@ const ProductProvider = ({children})=>{
         return resp;
     }
 
-    const data = {handleCreate, products}
+    const setProduct = async (objProduct)=>{
+        let token = localStorage.getItem('token');
+        let resp = await fetch(apiProduct, {
+            method: 'PUT',
+            headers:{
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify(objProduct)
+        });
+
+        if(resp.status === 200){
+            getProducts();
+        }
+
+        return resp.status;
+    }
+
+    const data = {handleCreate, products, setProduct}
 
     return <ProductContext.Provider value={data}>{children}</ProductContext.Provider>
 }

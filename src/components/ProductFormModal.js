@@ -1,16 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Modal, Button, Form, Row, Col } from "react-bootstrap";
+import ProductContext from "../context/ProductContext";
 
-const ProductFormModal = ({ show, handleClose }) => {
+const objForm = {
+  id: "",
+  name: "",
+  price: ""
+}
 
-    const [form, setForm] = useState({name: "", price: ""});
+const ProductFormModal = ({ show, handleClose, id, name, price }) => {
+
+  const {setProduct} = useContext(ProductContext);
+
+    const [form, setForm] = useState(objForm);
+
+    useEffect(()=>{
+      setForm({id, name, price});
+    }, [name]);
 
     const handleForm = (e)=>{
         setForm({...form, [e.target.name]: e.target.value});
     }
 
     const handleUpdate = ()=>{
-
+      setProduct(form);
+      setForm(objForm);
+      handleClose();
     }
 
   return (
