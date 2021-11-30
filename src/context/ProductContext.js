@@ -11,7 +11,7 @@ const ProductProvider = ({children})=>{
 
     useEffect(()=>{
         getProducts();
-        //getAllProducts();
+        getAllProducts();
     }, []);
 
     const handleCreate = async (objProduct)=>{

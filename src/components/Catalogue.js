@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import ProductContext from '../context/ProductContext'
+import ProductCard from './ProductCard';
 
 const Catalogue = () => {
 
@@ -8,9 +9,7 @@ const Catalogue = () => {
     return (
         <div>
             <h2>Catalogue</h2>
-            <p>
-               *LISTAR LOS PRODUCTOS SIN MOSTRAR EL BOTÓN 'EDIT' 'DELETE'
-            </p>
+            {catalogue.map(e=><ProductCard key={e._id} id={e._id} name={e.name} price={e.price}/>)}
         </div>
     )
 }
