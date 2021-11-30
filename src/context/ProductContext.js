@@ -1,15 +1,18 @@
 
 import {createContext, useEffect, useState} from "react";
-import { apiProduct } from "./Api";
+import { responsivePropType } from "react-bootstrap/esm/createUtilityClasses";
+import { apiProduct, apiPublicProducts } from "./Api";
 
 const ProductContext = createContext();
 
 const ProductProvider = ({children})=>{
 
     const [products, setProducts] = useState([]);
+    const[catalogue, setCatalogue] = useState([]);
 
     useEffect(()=>{
         getProducts();
+        getAllProducts();
     }, []);
 
     const handleCreate = async (objProduct)=>{
@@ -89,7 +92,17 @@ const ProductProvider = ({children})=>{
         return resp.status;
     }
 
-    const data = {handleCreate, products, setProduct, deleteProduct}
+    const getAllProducts = async()=>{
+        let resp = await fetch(apiPublicProducts);
+        if(resp.status === 200){
+            let json = await resp.json();
+            setCatalogue(json);
+        }
+
+        return resp.status;
+    }
+
+    const data = {handleCreate, products, setProduct, deleteProduct, catalogue, getAllProducts}
 
     return <ProductContext.Provider value={data}>{children}</ProductContext.Provider>
 }
