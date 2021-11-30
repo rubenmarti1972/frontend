@@ -1,6 +1,5 @@
 
 import {createContext, useEffect, useState} from "react";
-import { responsivePropType } from "react-bootstrap/esm/createUtilityClasses";
 import { apiProduct, apiPublicProducts } from "./Api";
 
 const ProductContext = createContext();
@@ -12,7 +11,7 @@ const ProductProvider = ({children})=>{
 
     useEffect(()=>{
         getProducts();
-        getAllProducts();
+        //getAllProducts();
     }, []);
 
     const handleCreate = async (objProduct)=>{
@@ -93,7 +92,12 @@ const ProductProvider = ({children})=>{
     }
 
     const getAllProducts = async()=>{
-        let resp = await fetch(apiPublicProducts);
+        let resp = await fetch(apiPublicProducts, {
+            method: 'GET',
+            headers:{
+                'Content-Type': 'application/json'
+            }
+        });
         if(resp.status === 200){
             let json = await resp.json();
             setCatalogue(json);

@@ -1,14 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import ProductContext from '../context/ProductContext'
 
 const Catalogue = () => {
+
+    const {catalogue} = useContext(ProductContext);
+
     return (
         <div>
             <h2>Catalogue</h2>
             <p>
-                CODIFICAR EL CATALOGO:
-                * DESARROLLAR EL END POINT PARA OBTENER TODOS LOS PRODUCTOS, INCLUSIVE 
-                DE OTROS USUARIO.
-                *LISTAR LOS PRODUCTOS SIN MOSTRAR EL BOTÓN 'EDIT' 'DELETE'
+               *LISTAR LOS PRODUCTOS SIN MOSTRAR EL BOTÓN 'EDIT' 'DELETE'
             </p>
         </div>
     )
