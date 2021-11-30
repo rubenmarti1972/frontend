@@ -28,6 +28,8 @@ const ProductFormModal = ({ show, handleClose, id, name, price }) => {
       handleClose();
     }
 
+    
+
   return (
     <Modal show={show} onHide={handleClose} backdrop="static">
       <Modal.Header closeButton>

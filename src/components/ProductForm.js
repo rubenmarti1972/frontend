@@ -21,6 +21,7 @@ const ProductForm = () => {
         e.preventDefault();
         let resp = await handleCreate(form);
         if(resp.status === 201){
+          setForm(objForm);
           setShow(true);
           setTimeout(()=>setShow(false), 3000);
         }

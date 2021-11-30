@@ -24,6 +24,10 @@ const ProductProvider = ({children})=>{
             },
             body: JSON.stringify(objProduct)
         });
+
+        if(resp.status === 201){
+            getProducts();
+        }
         return resp;
     }
 
@@ -65,7 +69,27 @@ const ProductProvider = ({children})=>{
         return resp.status;
     }
 
-    const data = {handleCreate, products, setProduct}
+    const deleteProduct = async (id)=>{
+        //Obtener token
+        let token = localStorage.getItem('token');
+        //Realizar la petición
+        let resp = await fetch(apiProduct, {
+            method: 'DELETE',
+            headers:{
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify({id: id})
+        });
+
+        if(resp.status === 200){
+            getProducts();
+        }
+
+        return resp.status;
+    }
+
+    const data = {handleCreate, products, setProduct, deleteProduct}
 
     return <ProductContext.Provider value={data}>{children}</ProductContext.Provider>
 }

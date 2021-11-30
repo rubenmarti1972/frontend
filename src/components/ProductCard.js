@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Card, Button } from "react-bootstrap";
+import ProductContext from "../context/ProductContext";
 import ProductFormModal from "./ProductFormModal";
 
-const ProductCard = ({ id, name, price, handleDelete }) => {
+const ProductCard = ({ id, name, price }) => {
+
+  const {deleteProduct} = useContext(ProductContext);
+
   const [show, setShow] = useState(false);
+
 
   const handleEdit = () => {
       setShow(true);
@@ -12,6 +17,10 @@ const ProductCard = ({ id, name, price, handleDelete }) => {
   const handleClose = () => {
     setShow(false);
   };
+
+  const handleDelete= ()=>{
+    deleteProduct(id);
+  }
 
 
   return (
@@ -23,7 +32,7 @@ const ProductCard = ({ id, name, price, handleDelete }) => {
           <Card.Text>{price}</Card.Text>
           <Button variant="warning" onClick={handleEdit}>Edit</Button>
           &nbsp;
-          <Button variant="danger">Delete</Button>
+          <Button variant="danger" onClick={handleDelete}>Delete</Button>
         </Card.Body>
       </Card>
       {/******Mostrar modal******/}
