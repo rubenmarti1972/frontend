@@ -1,13 +1,13 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import { Outlet } from "react-router";
 import { Link } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
+import { ShopProvider } from "../../context/ShopContext";
 import logo from "../../logo.svg";
 
 const Dashboard = () => {
-
-  const {handleLogout} = useContext(AuthContext);
+  const { handleLogout } = useContext(AuthContext);
 
   return (
     <>
@@ -26,16 +26,23 @@ const Dashboard = () => {
 
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link as={Link} to="/" href="#home">Home</Nav.Link>
-              <Nav.Link as={Link} to="/catalogue" href="#catalogue">Catalogue</Nav.Link>
-              <Nav.Link  href="" onClick={handleLogout}>Log Out</Nav.Link>
+              <Nav.Link as={Link} to="/" href="#home">
+                Home
+              </Nav.Link>
+              <Nav.Link as={Link} to="/catalogue" href="#catalogue">
+                Catalogue
+              </Nav.Link>
+              <Nav.Link href="" onClick={handleLogout}>
+                Log Out
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
-
         </Container>
       </Navbar>
       {/********Aquí se cargarán los componentes hijos referenciados en las rutas**** */}
-      <Outlet />
+      <ShopProvider>
+        <Outlet />
+      </ShopProvider>
     </>
   );
 };

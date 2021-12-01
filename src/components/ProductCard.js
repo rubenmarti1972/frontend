@@ -1,11 +1,13 @@
 import React, { useContext, useState } from "react";
 import { Card, Button } from "react-bootstrap";
 import ProductContext from "../context/ProductContext";
+import ShopContext from "../context/ShopContext";
 import ProductFormModal from "./ProductFormModal";
 
-const ProductCard = ({ id, name, price, edit }) => {
+const ProductCard = ({ objProduct, edit }) => {
 
   const {deleteProduct} = useContext(ProductContext);
+  const {handleCart} = useContext(ShopContext);
 
   const [show, setShow] = useState(false);
 
@@ -19,7 +21,7 @@ const ProductCard = ({ id, name, price, edit }) => {
   };
 
   const handleDelete= ()=>{
-    deleteProduct(id);
+    deleteProduct(objProduct._id);
   }
 
 
@@ -28,9 +30,9 @@ const ProductCard = ({ id, name, price, edit }) => {
       <Card>
         <Card.Header></Card.Header>
         <Card.Body>
-          <Card.Title>{name}</Card.Title>
-          <Card.Text>{price}</Card.Text>
-          {edit &&
+          <Card.Title>{objProduct.name}</Card.Title>
+          <Card.Text>{objProduct.price}</Card.Text>
+          {edit ?
           (
             <>
             <Button variant="warning" onClick={handleEdit}>Edit</Button>
@@ -38,12 +40,14 @@ const ProductCard = ({ id, name, price, edit }) => {
             <Button variant="danger" onClick={handleDelete}>Delete</Button>
           </>
           )
+          :
+          <Button onClick={()=>handleCart(objProduct)}>Add cart</Button>
         }
           
         </Card.Body>
       </Card>
       {/******Mostrar modal******/}
-      <ProductFormModal id={id} name={name} price={price} show={show} handleClose={handleClose}/>
+      <ProductFormModal objProduct={objProduct} show={show} handleClose={handleClose}/>
     </>
   );
 };

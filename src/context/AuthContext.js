@@ -1,10 +1,12 @@
 import { createContext, useEffect, useState } from "react";
 import { apiRegister, apiLogin } from "./Api";
+import {useNavigate} from "react-router";
 
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState(false);
+  const navigate = useNavigate();
 
   //Se ejecuta al crear el componente
   useEffect(() => {
@@ -56,6 +58,7 @@ const AuthProvider = ({ children }) => {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    navigate('/');
     setAuth(false);
   };
 
