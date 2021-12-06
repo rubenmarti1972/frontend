@@ -1,4 +1,4 @@
-const server = "http://localhost:3000";
+const server = "https://backend-web53857.herokuapp.com";
 const apiRegister = `${server}/user`;
 const apiLogin = `${server}/user/auth`;
 const apiProduct = `${server}/product`;
